@@ -1,0 +1,50 @@
+﻿@model CarViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br>
+
+<a asp-area="" asp-controller="Home" asp-action="New" asp-route-id="0">Add a new Car!</a>
+
+<br>
+<br>
+
+<ul class="cars">
+    <li class="title">
+        <p>License plate</p>
+        <p>Owner</p>
+        <p>Car</p>
+    </li>
+
+    <hr>
+
+    <li>
+        <p>1-ONI-997</p>
+        <p>Kristel Pire</p>
+        <p>Datsun 240Z</p>
+    </li>
+    <li>
+        <p>1-ABC-003</p>
+        <p>Nina Drango</p>
+        <p>Dodge Chanllenger SRT Hellcat</p>
+    </li>
+    <li>
+        <p>1-WRX-268</p>
+        <p>Evan Hansen</p>
+        <p>Subaru WRX STI</p>
+    </li>
+    
+    @foreach (var car in Model.CarList)
+    {
+        <li>
+            <p>@car.LicensePlate</p>
+            <p>@car.Owner</p>
+            <p>@car.Color</p>
+            <p>@car.CarType</p>
+            <p>@car.Date.ToLongDateString()</p>
+            <p><a asp-controller="Car" asp-action="Detail" asp-route-id="@car.Id">Edit</a> | <a asp-controller="Car" asp-action="DeleteConfirmed" asp-route-id="@car.Id">Delete</a></p>
+        </li>
+    }
+</ul>
